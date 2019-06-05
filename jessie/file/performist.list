@@ -1,0 +1,3 @@
+deb http://apt.anybox.fr/openerp common main
+deb http://apt.anybox.fr/openerp anybox contrib
+deb http://apt.anybox.fr/openerp anybox-jessie contrib

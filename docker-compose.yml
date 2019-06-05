@@ -1,0 +1,32 @@
+version: '3'
+
+volumes:
+    pg_data:
+
+services:
+    pg:
+        image: postgres:9.6
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=performist
+    
+    odoo:
+        depends_on:
+            - pg
+            
+        image: performist/odoodev:jessie
+        #image: performist/odoodev:jessie-py3
+        
+        volumes:
+            - .:/home/performist/project
+
+            # pg dumps volume
+            - ${HOME}/dump:/home/performist/.pg_dumps
+        
+        working_dir: /home/performist/project
+        
+        ports:
+            - "8069:8069"
+        
+        tty: true
